@@ -13,6 +13,10 @@ import os
 import time
 import boto3
 
+# Local Imports
+
+from src.settings import settings
+
 ##############################################################################################
 
 
@@ -30,9 +34,9 @@ def save_records_to_s3_with_delay(data, bucket, folder, delay_seconds=15):
     # Initialize the S3 client
     s3 = boto3.client(
         "s3",
-        aws_access_key_id="XXXXXX",
-        aws_secret_access_key="XXXXXXXXXXXX",
-        region_name="eu-west-2",
+        aws_access_key_id=settings.AWS_ACCESS_KEY,
+        aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+        region_name=settings.AWS_REGION,
     )
 
     for index, record in enumerate(data):
